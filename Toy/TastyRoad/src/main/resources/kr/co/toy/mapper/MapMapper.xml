@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.toy.mapper.MapMapper">
+
+	<select id="getList" resultType="kr.co.toy.model.MapVO">
+		SELECT * FROM restaurant
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO restaurant
+			(no, lat, lng, name, addr1, addr2, menu) 
+		VALUES
+			(res_seq.nextval, #{lat}, #{lng}, #{name}, #{addr1}, #{addr2}, #{menu})
+	</insert>
+	
+	<select id="read" resultType="kr.co.toy.model.MapVO">
+		SELECT * FROM restaurant WHERE no = #{no}
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM restaurant WHERE no = #{no}
+	</delete>
+	
+	<update id="update">
+		UPDATE restaurant 
+		SET 
+			lat = #{lat}, lng = #{lng}, 
+			name = #{name}, addr1 = #{addr1}, addr2 = #{addr2}, 
+			menu = #{menu}
+		WHERE no = #{no}
+	</update>
+
+</mapper>
